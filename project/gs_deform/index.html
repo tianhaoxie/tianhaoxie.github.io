@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Sketch-guided Cage-based 3D Gaussian Splatting Deformation">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sketch-guided Cage-based 3D Gaussian Splatting Deformation</title>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Sketch-guided Cage-based 3D Gaussian Splatting Deformation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/tianhao-xie-440b20186?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">Tianhao Xie</a><sup>1</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="https://noamaig.github.io/">Noam Aigerman</a><sup>2</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="http://eugenium.github.io/">Eugene Belilovsky</a><sup>1,3</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="https://users.encs.concordia.ca/~stpopa/">Tiberiu Popa</a><sup>1</sup>,
+            </span>
+
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Concordia University,</span>
+            <span class="author-block"><sup>2</sup>Universit&eacute de Montr&eacuteal,</span>
+            <span class="author-block"><sup>3</sup>MILA</span>
+
+
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2411.12168"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Arxiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!--
+              <span class="link-block">
+                <a href="https://youtu.be/tgEHYrGmenY?si=fwryXClRLEbFedWQ"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              -->
+
+              <!-- Code Link. -->
+              <!--
+              <span class="link-block">
+                <a href="https://github.com/tianhaoxie/Drag3D"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+             -->
+
+              <!-- Dataset Link. -->
+              <!--
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+                -->
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png"
+           class="teaser"
+           alt="teaser image."/>
+      <h2 class="subtitle has-text-centered">
+         Deformations of  3D Gaussian splats (GS) using our sketch-guided deformation method. Given a 3D GS scene,
+         the user can deform the 3D GS by drawing a deformed silhouette sketch of a single view.
+         (A) and (B) show examples with synthetic data and real-world large-scale data respectively.
+         We can also produce an animation of a of 3D GS by few keyframe sketches, as shown in (C).
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            3D Gaussian Splatting (GS) is one of the most promising novel 3D representations that has received great interest in computer graphics and computer vision.
+            While various systems have introduced editing capabilities for 3D GS, such as those guided by text prompts, fine-grained control over deformation remains an open challenge.
+            In this work, we present a novel sketch-guided 3D GS deformation system that allows users to intuitively modify the geometry of a 3D GS model by drawing a silhouette sketch from a single viewpoint.
+            Our approach introduces a new deformation method that combines cage-based deformations with a variant of Neural Jacobian Fields, enabling precise, fine-grained control.
+            Additionally, it leverages large-scale 2D diffusion priors and ControlNet to ensure the generated deformations are semantically plausible.
+            Through a series of experiments, we demonstrate the effectiveness of our method and showcase its ability to animate static 3D GS models as one of its key applications.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="overview">
+          <img src="./static/images/method_diagram.png"
+               class="overview"
+               alt="method image."/>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+
+    <!-- Gallery. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+      <!-- <div class="result"> -->
+          <div class="grid-container">
+            <!-- Video Column 1 -->
+            <div class="grid-item">
+              <div class="caption">Source</div>
+              <video class="video" loop autoplay muted>
+                <source src="./static/videos/axe_shape_orig.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+
+              <!-- Video Column 2 -->
+              <div class="grid-item">
+                <div class="caption">Deformed</div>
+                <video class="video" loop autoplay muted>
+                  <source src="./static/videos/axe_shape_def.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+
+                <!-- Image Column 3 -->
+                <div class="grid-item">
+                  <div class="caption">Sketch</div>
+                  <img class="image" src="./static/videos/sketch_axe.png" alt="Image description">
+                </div>
+
+
+              <!-- Video Column 1 -->
+              <div class="grid-item">
+                <div class="caption">Source</div>
+                <video class="video" loop autoplay muted>
+                  <source src="./static/videos/boot_heel_orig.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+
+                <!-- Video Column 2 -->
+                <div class="grid-item">
+                  <div class="caption">Deformed</div>
+                  <video class="video" loop autoplay muted>
+                    <source src="./static/videos/boot_heel_def.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+
+                  <!-- Image Column 3 -->
+                <div class="grid-item">
+                  <div class="caption">Sketch</div>
+                    <img class="image" src="./static/videos/sketch_boot.png" alt="Image description">
+                  </div>
+
+                  <!-- Video Column 1 -->
+                <div class="grid-item">
+                    <video class="video" loop autoplay muted>
+                      <source src="./static/videos/cat_walk1_orig.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+
+                    <!-- Video Column 2 -->
+                  <div class="grid-item">
+                      <video class="video" loop autoplay muted>
+                        <source src="./static/videos/cat_walk1_def.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
+
+                      <!-- Image Column 3 -->
+                  <div class="grid-item">
+                        <img class="image" src="./static/videos/sketch_cat.png" alt="Image description">
+                      </div>
+
+
+
+                          <!-- Video Column 1 -->
+                  <div class="grid-item">
+                            <video class="video" loop autoplay muted>
+                              <source src="./static/videos/dino_roar1_orig.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                              </video>
+                            </div>
+
+                            <!-- Video Column 2 -->
+                  <div class="grid-item">
+                              <video class="video" loop autoplay muted>
+                                <source src="./static/videos/dino_roar1_def.mp4" type="video/mp4">
+                                  Your browser does not support the video tag.
+                                </video>
+                              </div>
+
+                              <!-- Image Column 3 -->
+                  <div class="grid-item">
+                                <img class="image" src="./static/videos/sketch_dino_roar.png" alt="Image description">
+                              </div>
+
+                              <!-- Video Column 1 -->
+                  <div class="grid-item">
+                                <video class="video" loop autoplay muted>
+                                  <source src="./static/videos/dino_bump_orig.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                  </video>
+                                </div>
+
+                                <!-- Video Column 2 -->
+                  <div class="grid-item">
+                                  <video class="video" loop autoplay muted>
+                                    <source src="./static/videos/dino_bump_def.mp4" type="video/mp4">
+                                      Your browser does not support the video tag.
+                                    </video>
+                                  </div>
+
+                                  <!-- Image Column 3 -->
+                  <div class="grid-item">
+                                    <img class="image" src="./static/videos/sketch_dino_bump.png" alt="Image description">
+                                  </div>
+
+                                  <!-- Video Column 1 -->
+                  <div class="grid-item">
+                                    <video class="video" loop autoplay muted>
+                                      <source src="./static/videos/egypt_wing_orig.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                      </video>
+                                    </div>
+
+                                    <!-- Video Column 2 -->
+                  <div class="grid-item">
+                                      <video class="video" loop autoplay muted>
+                                        <source src="./static/videos/egypt_wing_def.mp4" type="video/mp4">
+                                          Your browser does not support the video tag.
+                                        </video>
+                                      </div>
+
+                                      <!-- Image Column 3 -->
+                  <div class="grid-item">
+                                        <img class="image" src="./static/videos/sketch_egypt.png" alt="Image description">
+                      </div>
+
+                      <!-- Video Column 1 -->
+                  <div class="grid-item">
+                        <video class="video" loop autoplay muted>
+                          <source src="./static/videos/man_fat_orig.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+
+                        <!-- Video Column 2 -->
+                  <div class="grid-item">
+                          <video class="video" loop autoplay muted>
+                            <source src="./static/videos/man_fat_def.mp4" type="video/mp4">
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
+
+                          <!-- Image Column 3 -->
+                  <div class="grid-item">
+                            <img class="image" src="./static/videos/sketch_man.png" alt="Image description">
+                      </div>
+
+                      <!-- Video Column 1 -->
+                  <div class="grid-item">
+                        <video class="video" loop autoplay muted>
+                          <source src="./static/videos/pistol_rifle1_orig.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+
+                        <!-- Video Column 2 -->
+                  <div class="grid-item">
+                          <video class="video" loop autoplay muted>
+                            <source src="./static/videos/pistol_rifle1_def.mp4" type="video/mp4">
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
+
+                          <!-- Image Column 3 -->
+                  <div class="grid-item">
+                            <img class="image" src="./static/videos/sketch_pistol.png" alt="Image description">
+                      </div>
+
+                      <!-- Video Column 1 -->
+                  <div class="grid-item">
+                        <video class="video" loop autoplay muted>
+                          <source src="./static/videos/saint_oratory_dome_orig.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+
+                        <!-- Video Column 2 -->
+                  <div class="grid-item">
+                          <video class="video" loop autoplay muted>
+                            <source src="./static/videos/saint_oratory_dome_def.mp4" type="video/mp4">
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
+
+                          <!-- Image Column 3 -->
+                  <div class="grid-item">
+                            <img class="image" src="./static/videos/sketch_so.png" alt="Image description">
+                      </div>
+
+                      <!-- Video Column 1 -->
+                  <div class="grid-item">
+                        <video class="video" loop autoplay muted>
+                          <source src="./static/videos/clock_tower_curvy_orig.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+
+                        <!-- Video Column 2 -->
+                  <div class="grid-item">
+                          <video class="video" loop autoplay muted>
+                            <source src="./static/videos/clock_tower_curvy_def.mp4" type="video/mp4">
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
+
+                          <!-- Image Column 3 -->
+                  <div class="grid-item">
+                            <img class="image" src="./static/videos/sketch_ct.png" alt="Image description">
+                      </div>
+
+
+
+
+
+
+
+
+                </div>
+              <!-- </div> -->
+
+        </div>
+      </div>
+    </div>
+    <!--/ Gallery. -->
+
+    <!-- video. -->
+    <!--
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="video-container">
+
+
+        </div>
+      </div>
+    </div>
+    -->
+
+
+  </div>
+
+</section>
+
+
+
+<section class="section" id="acknowledgement">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgement</h2>
+    <p>
+      The source code of this project is based on some amazing projects:
+    </p>
+    <p>
+      <a href="https://github.com/graphdeco-inria/gaussian-splatting"> 3D Gaussian Splatting </a>
+    </p>
+    <p>
+      <a href="https://github.com/jiawei-ren/dreamgaussian4d"> DreamGaussian4D </a>
+    </p>
+    <p>
+      <a href="https://threedle.github.io/TextDeformer/"> TextDeformer </a>
+    </p>
+    <p>
+      <a href="https://github.com/ThibaultGROUEIX/NeuralJacobianFields"> Neural Jacobian Fields </a>
+    </p>
+  </div>
+</section>
+
+
+<!--
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section>
+-->
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!--
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/tianhaoxie" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website source code based on the
+            <a href="https://nerfies.github.io/"> Nerfies </a>
+            project page.
+            If you want to reuse their <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a>., please credit them appropriately.
+
+
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
