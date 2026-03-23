@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="FACT-GS: Frequency-Aligned Complexity-Aware Texture Reparameterization for 2D Gaussian Splatting">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FACT-GS: Frequency-Aligned Complexity-Aware Texture Reparameterization for 2D Gaussian Splatting</title>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">FACT-GS: <strong><u>F</u></strong>requency-<strong><u>A</u></strong>ligned <strong><u>C</u></strong>omplexity-Aware <strong><u>T</u></strong>exture Reparameterization for 2D Gaussian Splatting</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://tianhaoxie.github.io">Tianhao Xie</a><sup>1,*, &dagger;</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="https://linlianjiang.github.io/">Linlian Jiang</a><sup>1,2,*</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="https://sites.google.com/site/xinxinzuohome/">Xinxin Zuo</a><sup>1</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="https://kywang.github.io">Yang Wang</a><sup>1,2</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="https://users.encs.concordia.ca/~stpopa/">Tiberiu Popa</a><sup>1</sup>
+            </span>
+
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Concordia University,</span>
+            <span class="author-block"><sup>2</sup>Mila-Quebec AI Institute</span>
+
+
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal contribution </span>
+            <span class="author-block"><sup>&dagger;</sup>Corresponding author </span>
+          </div>
+
+          <div class="is-size-4 publication-authors">
+            <span class="author-block"><strong>CVPR 2026 Findings</strong> </span>
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2511.23292"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Arxiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!--
+              <span class="link-block">
+                <a href="https://youtu.be/tgEHYrGmenY?si=fwryXClRLEbFedWQ"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              -->
+
+              <!-- Code Link. -->
+              
+              <span class="link-block">
+                <a href="https://github.com/tianhaoxie/FACT-GS"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+             
+
+              <!-- Dataset Link. -->
+              <!--
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+                -->
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.jpg"
+           class="teaser"
+           alt="teaser image."/>
+      <h2 class="content has-text-justified">
+        Existing methods for novel view synthesis, such as 2DGS, use a spatially constant per-Gaussian appearance, while Textured
+        GS adds per-Gaussian textures but still relies on a uniform sampling grid. This uniform allocation ignores local signal complexity,
+        causing high-frequency details to blur and wasting capacity in flat regions. In contrast, our frequency-aligned texture reparameterization
+        allocates capacity based on visual complexity, preserving sharp details under the same primitive budget.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Realistic scene appearance modeling has advanced rapidly with Gaussian Splatting, which enables real-time, high-quality rendering. Recent advances introduced per-primitive textures that incorporate spatial color variations within each Gaussians, improving their expressiveness. 
+            However, texture-based Gaussians parameterize appearance with a uniform per-Gaussian sampling grid, 
+allocating equal sampling density regardless of local visual complexity.
+This leads to inefficient texture space utilization, where high-frequency regions are under-sampled and smooth regions waste capacity, causing blurred appearance and loss of fine structural detail.
+We introduce <strong>FACT-GS</strong>, a <strong><u>F</u></strong>requency-<strong><u>A</u></strong>ligned <strong><u>C</u></strong>omplexity-Aware <strong><u>T</u></strong>exture Gaussian Splatting framework that allocates texture sampling density according to local visual frequency.
+Grounded in adaptive sampling theory, FACT-GS reformulates texture parameterization as a differentiable sampling-density allocation problem, replacing the uniform textures with a learnable frequency-aware allocation strategy implemented via a
+deformation field whose Jacobian modulates local sampling density.
+Built on 2D Gaussian Splatting, FACT-GS performs non-uniform sampling on fixed-resolution texture grids,
+preserving real-time performance while recovering sharper high-frequency details under the same parameter budget.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="overview">
+          <img src="./static/images/method_diagram.png"
+               class="overview"
+               alt="method image."/>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+
+    <!-- Gallery. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+      <!-- <div class="result"> -->
+        <img src="./static/images/results.jpg"
+        class="results"
+        alt="results image."/>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Gallery. -->
+
+    <!-- video. -->
+    <!--
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="video-container">
+
+
+        </div>
+      </div>
+    </div>
+    -->
+
+
+  </div>
+
+</section>
+
+
+
+<section class="section" id="acknowledgement">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgement</h2>
+    
+    <p>
+      The source code of this project is based on some amazing projects:
+    </p>
+    <p>
+      <a href="https://textured-gaussians.github.io/"> Textured-gaussians </a>
+    </p>
+    <p>
+      <a href="https://github.com/nerfstudio-project/gsplat"> gsplat </a>
+    </p>
+  </div>
+
+</section>
+
+
+<!--
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section>
+-->
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!--
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/tianhaoxie" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website source code based on the
+            <a href="https://nerfies.github.io/"> Nerfies </a>
+            project page.
+            If you want to reuse their <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a>., please credit them appropriately.
+
+
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
